@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>com.superl.login.Login</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoadSeller</servlet-name>
+        <servlet-class>com.superl.Load.LoadSeller</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoadSeller</servlet-name>
+        <url-pattern>/LoadSeller</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoadUserMsg</servlet-name>
+        <servlet-class>com.superl.Load.LoadUserMsg</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoadUserMsg</servlet-name>
+        <url-pattern>/LoadUserMsg</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Register</servlet-name>
+        <servlet-class>com.superl.register.Register</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>IntroduceGoods</servlet-name>
+        <servlet-class>com.superl.introduce.IntroduceGoods</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>IntroduceGoods</servlet-name>
+        <url-pattern>/IntroduceGoods</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoadGoods</servlet-name>
+        <servlet-class>com.superl.Load.LoadGoods</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoadGoods</servlet-name>
+        <url-pattern>/LoadGoods</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>seekGoods</servlet-name>
+        <servlet-class>com.superl.seek.seekGoods</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>seekGoods</servlet-name>
+        <url-pattern>/seekGoods</url-pattern>
+    </servlet-mapping>
+
+</web-app>
