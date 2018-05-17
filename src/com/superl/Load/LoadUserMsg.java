@@ -24,6 +24,7 @@ public class LoadUserMsg extends HttpServlet {
         resp.setContentType("text/html;charset=utf-8");
         PrintWriter out = resp.getWriter();
         String username="";
+        int mode = 0;
         //获取请求key集合
         Enumeration<String> en = req.getParameterNames();
         //遍历集合
@@ -34,12 +35,17 @@ public class LoadUserMsg extends HttpServlet {
                 //获取值
                 username = req.getParameter(key);
             }
+            if (key.equals("mode")){
+                mode = Integer.parseInt(req.getParameter(key));
+            }
         }
         //获取数据库连接
         Connection conn = JDBCUtil.getConnection();
         //编写sql语句
-        String sqlUserN = "SELECT username, Intr, count(MyAtten) as myAtten, count(attenMe) as attenMe, myBuy ,saleGoodsStore FROM commuser "
-                         + "WHERE username= '" + username+"'";
+        String sqlUserN = "SELECT username, Intr, count(MyAtten) as myAtten, count(attenMe) as attenMe ,saleGoodsStore" +
+                            ", soldGoodsStore, collection, buyStore FROM commuser "
+                          + "WHERE username= '" + username+"'";
+
         String sqlColl = "SELECT COUNT(cogoods.name) AS collection FROM cogoods" +
                           " WHERE cogoods.collId IN (" +
                           " SELECT collection.collId FROM collection WHERE collection.username = '"+username+"')";
@@ -49,14 +55,23 @@ public class LoadUserMsg extends HttpServlet {
         String sqlSold = "SELECT COUNT(sogoods.name) AS soldNum FROM sogoods" +
                          " WHERE sogoods.soId IN (" +
                          " SELECT soldstore.soId FROM soldstore WHERE soldstore.username = '" +username+ "')";
-        String[] sqls = {sqlUserN, sqlColl, sqlSale, sqlSold};
+        String sqlBuy = "SELECT COUNT(buygoods.name) AS buyNum FROM buygoods" +
+                         " WHERE buygoods.buyId IN (" +
+                        " SELECT buystore.buyId FROM buystore WHERE buystore.username = '" +username+ "')";
+        String[] sqls = null;
+        if (mode == 0){
+            sqls = new String[]{sqlUserN, sqlColl, sqlSale, sqlSold, sqlBuy};
+        }else if (mode == 1){
+             sqls = new String[]{sqlColl, sqlSale, sqlSold, sqlBuy};
+        }
+
         List<Map<String, Object>> sList =new ArrayList<>();
         //获取PreparedStatement
         try {
             Statement ps = conn.createStatement();
             for (int i = 0; i < sqls.length; i++){
                 ResultSet rs = ps.executeQuery(sqls[i]);
-                List<Map<String, Object>> list = ConverList.converArrayToList(rs);
+                List<Map<String, Object>> list = ConverList.converList(rs);
                 for ( Map<String, Object> map : list) {
                     sList.add(map);
                 }

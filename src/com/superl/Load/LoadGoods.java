@@ -44,7 +44,7 @@ public class LoadGoods extends HttpServlet {
         PreparedStatement ps;
         ResultSet rs;
         //编写SQL语句
-        String sql = "SELECT commuser.`username`, commuser.`Intr`, segoods.`price`, segoods.`name`, segoods.`goodsIntr` \n" +
+        String sql = "SELECT commuser.`username`, commuser.`Intr`, segoods.`price`, segoods.`name`, segoods.`goodsIntr` , segoods.seId \n" +
                     "FROM commuser JOIN (seldstore JOIN segoods ON seldstore.`seId` = segoods.`seId`) ON commuser.`username` = seldstore.`username`\n" +
                     "WHERE commuser.`username` LIKE ? AND segoods.`goodsId` = ?";
 

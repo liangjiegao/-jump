@@ -67,4 +67,22 @@
         <url-pattern>/seekGoods</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>LoadUserGoodsFromState</servlet-name>
+        <servlet-class>com.superl.Load.LoadUserGoodsFromState</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoadUserGoodsFromState</servlet-name>
+        <url-pattern>/LoadUserGoodsFromState</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserBuy</servlet-name>
+        <servlet-class>com.superl.transaction.UserBuy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserBuy</servlet-name>
+        <url-pattern>/UserBuy</url-pattern>
+    </servlet-mapping>
+
 </web-app>
